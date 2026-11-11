@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pinky-promise",
+  "main": "server/index.ts",
+  "compatibility_date": "2026-02-01",
+  "account_id": "0871e938966126455918d1f877ad1c52",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pinky-promise",
+      "database_id": "4e0795ae-52f1-4f7f-a1e6-6355c8334a7a",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "kv_namespaces": [
+    { "binding": "KV", "id": "1e16a78918014c1e957560c387d74737" },
+  ],
+  "ai": { "binding": "AI" },
+  "workflows": [
+    {
+      "name": "pinky-settle-promise",
+      "binding": "SETTLE",
+      "class_name": "SettlePromise",
+    },
+  ],
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "observability": { "enabled": true },
+}
